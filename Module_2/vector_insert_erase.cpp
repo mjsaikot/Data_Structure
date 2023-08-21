@@ -15,5 +15,11 @@ int main() {
         cout<<x<<" ";
     }
     cout<<endl;
+    v.erase(v.begin()+5,v.end());
+    for(int x:v)
+    {
+        cout<<x<<" ";
+    }
+    cout<<endl;
     return 0;
 }
