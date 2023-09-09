@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-
+/*You will be given an array A of size N. Print "YES" if there is any duplicate value in the array,*/
 using namespace std;
 
 int main() {
