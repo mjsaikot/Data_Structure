@@ -39,20 +39,35 @@ void print_linked_list(Node* head)
         cout<<tmp->val<<" ";
         tmp = tmp->next;
     }
+    cout<<endl<<endl;
 }
 
 int main() {
     Node* head = NULL;
-    cout<<"Option 1: Insert at Tail"<<endl;
-    int op;
-    cin>>op;
-    if(op == 1)
+    while(true)
     {
-        int v;
-        cin>>v;
-        insert_at_tail(head,v);
-    }
-    print_linked_list(head);
-   
+        cout<<"Option 1: Insert at Tail"<<endl;
+        cout<<"Option 2: Print the linked list"<<endl;
+        cout<<"Option 3: Terminate Program"<<endl;
+        int op;
+        cin>>op;
+        if(op == 1)
+        {
+            int v;
+            cout<<"Enter your value: ";
+            cin>>v;
+            insert_at_tail(head,v);
+        }
+        else if(op == 2)
+        {
+            cout<<"Your Linked list is: ";
+            //call print function;
+            print_linked_list(head);
+        }
+        else{
+            break;
+        }
+        
+    }   
    return 0;
 }
