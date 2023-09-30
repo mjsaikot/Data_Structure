@@ -116,7 +116,7 @@ int main()
             cin >> v;
             insert_at_tail(head, v);
         }
-        else if(op = 4)
+        else if(op == 4)
         {
             cout << endl;
             cout << "Your Linked list is: ";
