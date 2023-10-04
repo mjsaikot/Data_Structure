@@ -73,9 +73,9 @@ void delete_node(Node* head, int pos)
 }
 void delete_head(Node * &head)
 {
-    Node *deleteHead = head;
+    Node *deleteNode = head;
     head = head->next;
-    delete head;
+    delete deleteNode;
     cout << endl
          << "Head Deleted" << endl;
 }
@@ -136,12 +136,19 @@ int main()
             int pos;
             cout << "Enter Position for delete Node: ";
             cin >> pos;
-            delete_node(head, pos);
-            cout << "Node Deleted" << endl;
+            if(pos == 0)
+            {
+                delete_head(head);
+            }
+            else
+            {
+                delete_node(head, pos);
+                cout << "Node Deleted" << endl;
+            }
         }
         else if (op == 6)
         {
-
+            delete_head(head);
         }
         else if(op == 7)
         {
@@ -149,6 +156,5 @@ int main()
             break;
         }
     }
-
     return 0;
 }
