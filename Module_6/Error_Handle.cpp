@@ -250,6 +250,12 @@ void delete_node(Node* head, int pos)
 }
 void delete_head(Node * &head)
 {
+    if(head == NULL)
+    {
+        cout << "No data in head" << endl
+                 << "Please insert head first!" << endl;
+            return;
+    }
     Node *deleteNode = head;
     head = head->next;
     delete deleteNode;
