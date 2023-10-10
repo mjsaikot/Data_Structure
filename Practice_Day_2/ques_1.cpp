@@ -18,7 +18,8 @@ void insert_at_tail(Node *&head, int v)
     Node *newNode = new Node(v);
     if(head == NULL)
     {
-        head = newNode;
+        head = newNode;        
+        cout << "Inserted at Head" << endl;
         return;
     }
     Node *tmp = head;
