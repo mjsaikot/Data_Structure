@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
-
+/*Question: Take a singly linked list as input and print the middle element.
+If there are multiple values in the middle print both.*/
 using namespace std;
 class Node
 {
@@ -29,19 +30,33 @@ void insert_at_tail(Node* &head, int val)
     }
     tmp->next = newNode;
     cout << " Inserted at Tail." << endl;
-    cout << endl;
 }
-void dup_val(Node *head)
+void find_middle(Node* head)
 {
     Node *tmp = head;
-    vector<int> v(tmp->val);
-    while (tmp != NULL)
+    if(head == NULL)
     {
-        /* code */
-        cout << v << " ";
+        cout << "Linked list is empty" << endl;
+        return;
     }
-    
+    Node *fast = head;
+    Node *slow = head;
+    Node *prev = NULL;
+    while(fast != NULL && fast->next != NULL)
+    {
+        fast = fast->next->next;
+        prev = slow;
+        slow = slow->next;
+    }
+    if(fast == NULL)
+    {
+        cout << prev->val << " " << slow->val << endl;
+    }
+    else{
+        cout << slow->val << endl;
+    }
 }
+
 int main() {
     Node *head = NULL;
     int val;
@@ -55,7 +70,10 @@ int main() {
         }
         insert_at_tail(head, val);
     }
-    dup_val(head);
+    cout << endl;
+    cout << "Your Middle Element is: ";
+    find_middle(head);
+    cout << endl;
 
     return 0;
 }
