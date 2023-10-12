@@ -12,7 +12,7 @@ int main() {
     while(q--)
     {
         int l,r;
-        cin>>l>>r;
+        cin >> l >> r;
         l--;
         r--;
         int sum = 0;
@@ -20,7 +20,7 @@ int main() {
         {
             sum += a[i];
         }
-        cout<<sum<<endl;
+        cout << sum << endl;
     }
 
     return 0;

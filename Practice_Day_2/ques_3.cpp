@@ -33,7 +33,6 @@ void insert_at_tail(Node* &head, int val)
 }
 void find_middle(Node* head)
 {
-    Node *tmp = head;
     if(head == NULL)
     {
         cout << "Linked list is empty" << endl;
@@ -50,9 +49,12 @@ void find_middle(Node* head)
     }
     if(fast == NULL)
     {
+        
+        cout << "Your Middle Element is: ";
         cout << prev->val << " " << slow->val << endl;
     }
     else{
+        cout << "Your Middle Element is: ";
         cout << slow->val << endl;
     }
 }
@@ -71,7 +73,6 @@ int main() {
         insert_at_tail(head, val);
     }
     cout << endl;
-    cout << "Your Middle Element is: ";
     find_middle(head);
     cout << endl;
 

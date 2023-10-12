@@ -31,16 +31,41 @@ void insert_at_tail(Node* &head, int val)
     cout << " Inserted at Tail." << endl;
     cout << endl;
 }
-void dup_val(Node *head)
+void print_linked_list(Node* head)
 {
-    Node *tmp = head;
-    vector<int> v(tmp->val);
-    while (tmp != NULL)
+    Node *fast = head;
+    Node *slow = head;
+    Node *prev = NULL;
+    while(fast != NULL && fast->next != NULL)
     {
-        /* code */
-        cout << v << " ";
+        cout << fast->val << " ";
+        fast = fast->next->next;
+        cout << endl;
+        cout << slow->val << " ";
+        prev = slow;
+        slow = slow->next;
+        
+    } 
+}
+bool dup_val(Node* head)
+{
+    // Node *head;
+    Node *fast = head;
+    Node *slow = head;
+    Node *prev = NULL;
+    while(fast != NULL && fast->next != NULL)
+    {
+        if(fast->val != slow->val)
+        {
+            return true;
+        }
+        fast = fast->next->next;
+        prev = slow;
+        slow = slow->next;
+        
     }
     
+    return false;
 }
 int main() {
     Node *head = NULL;
@@ -55,7 +80,15 @@ int main() {
         }
         insert_at_tail(head, val);
     }
-    dup_val(head);
+    print_linked_list(head);
+    // if(dup_val(head) == true)
+    // {
+    //     cout << "true" << endl;
+    // }
+    // else
+    // {
+    //     cout << "false" << endl;
+    // }
 
     return 0;
 }
