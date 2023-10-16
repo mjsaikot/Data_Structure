@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
-
+/*Question: Take a singly linked list as input and check if the linked list contains any duplicate value. 
+You can assume that the maximum value will be 100.*/
 using namespace std;
 class Node
 {
