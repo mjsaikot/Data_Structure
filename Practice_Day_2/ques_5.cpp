@@ -1,11 +1,12 @@
 #include <bits/stdc++.h>
-
+/*Question: Take a singly linked list as input and check if the linked list is sorted in ascending order.
+ */
 using namespace std;
 class Node
 {
-    public:
-        int val;
-        Node* next;
+public:
+    int val;
+    Node *next;
 
     Node(int val)
     {
@@ -13,10 +14,10 @@ class Node
         this->next = NULL;
     }
 };
-void insert_at_tail(Node *&head, Node* &tail, int val)
+void insert_at_tail(Node *&head, Node *&tail, int val)
 {
     Node *newNode = new Node(val);
-    if(head == NULL)
+    if (head == NULL)
     {
         head = newNode;
         tail = newNode;
@@ -25,24 +26,20 @@ void insert_at_tail(Node *&head, Node* &tail, int val)
     tail->next = newNode;
     tail = newNode;
 }
-void print_linked_list(Node* head)
+bool print_linked_list()
 {
+    Node *head;
     Node *tmp = head;
-    while(tmp != NULL)
+    while (tmp != NULL && tmp->next != NULL)
     {
-        if(tmp->next < tmp->next->next)
+        if (tmp->val > tmp->next->val)
         {
-            cout << "YES" << endl;
+            return false;
         }
-        else
-        {
-            cout << "NO" << endl;
-        }
-        cout << tmp->val << " ";
         tmp = tmp->next;
     }
-    cout << endl
-         << endl;
+    cout << endl;
+    return true;
 }
 int main()
 {
@@ -51,15 +48,21 @@ int main()
     int val;
     while (true)
     {
-        /* code */
         cin >> val;
-        if(val == -1)
+        if (val == -1)
         {
             break;
         }
         insert_at_tail(head, tail, val);
     }
-    print_linked_list(head);
+    if (print_linked_list() == true)
+    {
+        cout << "YES" << endl;
+    }
+    else
+    {
+        cout << "NO" << endl;
+    }
 
     return 0;
 }
