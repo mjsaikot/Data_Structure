@@ -2,8 +2,9 @@
 using namespace std;
 class Node
 {
-	public: int val;
-	Node * next;
+public:
+	int val;
+	Node *next;
 
 	Node(int val)
 	{
@@ -12,13 +13,14 @@ class Node
 	}
 };
 
-void insert_at_tail(Node* &head, int v)
+void insert_at_tail(Node *&head, int v)
 {
 	Node *newNode = new Node(v);
 	if (head == NULL)
 	{
 		head = newNode;
-		cout << "Inserted at Head" << endl << endl;
+		cout << "Inserted at Head" << endl
+			 << endl;
 		return;
 	}
 
@@ -28,9 +30,10 @@ void insert_at_tail(Node* &head, int v)
 		tmp = tmp->next;
 	}
 
-	//after finish the loop tmp will stay in last node;
+	// after finish the loop tmp will stay in last node;
 	tmp->next = newNode;
-	cout << "Inserted at tail" << endl << endl;
+	cout << "Inserted at tail" << endl
+		 << endl;
 }
 
 void print_linked_list(Node *head)
@@ -42,7 +45,8 @@ void print_linked_list(Node *head)
 		tmp = tmp->next;
 	}
 
-	cout << endl << endl;
+	cout << endl
+		 << endl;
 }
 
 void insert_at_pos(Node *head, int pos, int v)
@@ -80,7 +84,7 @@ int main()
 		else if (op == 2)
 		{
 			cout << "Your Linked list is: ";
-			//call print function;
+			// call print function;
 			print_linked_list(head);
 		}
 		else if (op == 3)
@@ -92,7 +96,8 @@ int main()
 			cin >> val;
 			cout << "Yor entered " << val << " for this number " << pos << " postiton." << endl;
 			insert_at_pos(head, pos, val);
-			cout << endl << endl;
+			cout << endl
+				 << endl;
 		}
 		else
 		{
