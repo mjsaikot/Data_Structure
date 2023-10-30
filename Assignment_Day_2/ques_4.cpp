@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
-
+/*You need to take a singly linked list of integer value as input.
+Then you need to print the singly linked list in reverse order,
+after that print the original linked list also.*/
 using namespace std;
 class Node
 {
@@ -33,8 +35,7 @@ void print_linked_list(Node *head)
         cout << tmp->val << " ";
         tmp = tmp->next;
     }
-    cout << endl
-         << endl;
+    cout << endl;
 }
 void print_reverse(Node *rev)
 {
@@ -60,6 +61,7 @@ int main()
         insert_at_tail(head, tail, val);
     }
     print_reverse(head);
+    cout << endl;
     print_linked_list(head);
 
     return 0;
