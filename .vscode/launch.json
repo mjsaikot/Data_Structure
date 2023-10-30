@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/Programing/Data_Structure/Module_6",
-      "program": "d:/Programing/Data_Structure/Module_6/build/Debug/outDebug",
+      "cwd": "d:/Programing/Data_Structure/Assignment_Day_2",
+      "program": "d:/Programing/Data_Structure/Assignment_Day_2/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

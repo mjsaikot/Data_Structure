@@ -33,8 +33,7 @@ void print_linked_list(Node *head)
         cout << tmp->val << " ";
         tmp = tmp->next;
     }
-    cout << endl
-         << endl;
+    cout << endl;
 }
 int main()
 {
@@ -43,13 +42,22 @@ int main()
     int val;
     while (true)
     {
-        /* code */
         cin >> val;
         if (val == -1)
         {
             break;
         }
         insert_at_tail(head, tail, val);
+    }
+    for (Node *i = head; i->next != NULL; i = i->next)
+    {
+        for (Node *j = i->next; i != NULL; j = j->next)
+        {
+            if (i->val > j->val)
+            {
+                swap(i->val, j->val);
+            }
+        }
     }
     print_linked_list(head);
 
