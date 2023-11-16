@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-
+/*Find MAX and MIN in singly linked list*/
 using namespace std;
 class Node
 {
@@ -13,7 +13,7 @@ public:
         this->next = NULL;
     }
 };
-void insert_at_tail(Node *head, Node *tail, int val)
+void insert_at_tail(Node *&head, Node *&tail, int val)
 {
     Node *newNode = new Node(val);
     if (head == NULL)
@@ -25,41 +25,54 @@ void insert_at_tail(Node *head, Node *tail, int val)
     tail->next = newNode;
     tail = newNode;
 }
-int findSmall(Node *head)
+void findLarge(Node *head)
 {
-    int min = INT_MAX;
-    while (head != NULL)
+    Node *tmp = head;
+    int max;
+    if (head == NULL)
     {
-        if (min > head->val)
-        {
-            min = head->val;
-        }
-        head = head->next;
+        cout << "Insert value first";
     }
-    return min;
+    else
+    {
+        max = head->val;
+        while (tmp != NULL)
+        {
+            if (max < tmp->val)
+            {
+                max = tmp->val;
+            }
+            tmp = tmp->next;
+        }
+        cout << max;
+    }
 }
-int findLarge(Node *head)
+void findSmall(Node *head)
 {
-    int max = INT_MIN;
-    while (head != NULL)
+    Node *tmp = head;
+    int min;
+    if (head == NULL)
     {
-        if (max < head->val)
-        {
-            max = head->val;
-        }
-        head = head->next;
+        cout << "Insert value first";
     }
-    return max;
+    else
+    {
+        min = head->val;
+        while (tmp != NULL)
+        {
+            if (min > tmp->val)
+            {
+                min = tmp->val;
+            }
+            tmp = tmp->next;
+        }
+        cout << " " << min;
+    }
 }
-// void printMaxMin(Node *&head)
-// {
-//     int *min = findSmall(head);
-//     int *max = findLarge(head);
-// }
 int main()
 {
-    Node *head = nullptr;
-    Node *tail = nullptr;
+    Node *head = NULL;
+    Node *tail = NULL;
     int val;
     while (true)
     {
@@ -70,7 +83,8 @@ int main()
         }
         insert_at_tail(head, tail, val);
     }
-    cout << findSmall(head) << " " << findLarge(head) << endl;
+    findLarge(head);
+    findSmall(head);
 
     return 0;
 }
