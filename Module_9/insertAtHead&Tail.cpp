@@ -28,7 +28,7 @@ void insert_at_tail(Node *&head, Node *&tail, int val)
     tail->next = newNode;
     tail = newNode;
 }
-void insert_at_head(Node *&head, int val)
+void insertAtHead(Node *&head, Node *&tail, int val)
 {
     Node *newNode = new Node(val);
     if (head == NULL)
@@ -43,10 +43,6 @@ void insert_at_head(Node *&head, int val)
 void insertAtPos(Node *head, int pos, int val)
 {
     Node *newNode = new Node(val);
-    if (pos == 0)
-    {
-        insert_at_head(head, val);
-    }
     Node *tmp = head;
     for (int i = 1; i <= pos - 1; i++)
     {
@@ -56,6 +52,23 @@ void insertAtPos(Node *head, int pos, int val)
     tmp->next = newNode;
     newNode->next->prev = newNode;
     newNode->prev = tmp;
+}
+void insertAtTail(Node *&tail, int val)
+{
+    Node *newNode = new Node(val);
+    tail->next = newNode;
+    newNode->prev = tail;
+    tail = tail->next;
+}
+int size(Node *head)
+{
+    Node *tmp = head;
+    int cnt = 0;
+    while (tmp != NULL)
+    {
+        cnt++;
+    }
+    return cnt;
 }
 void printNormal(Node *head)
 {
@@ -79,23 +92,40 @@ void print_reverse(Node *tail)
 }
 int main()
 {
-    Node *head = NULL;
-    Node *tail = NULL;
+    Node *head = nullptr;
+    Node *tail = nullptr;
     int val;
     while (true)
     {
         cin >> val;
-        if (val = -1)
+        if (val == -1)
         {
             break;
         }
         insert_at_tail(head, tail, val);
     }
     printNormal(head);
+    print_reverse(tail);
     int pos;
     cin >> pos >> val;
-    insertAtPos(head, pos, val);
+    if (pos == 0)
+    {
+        insertAtHead(head, tail, val);
+    }
+    else if (pos == size(head))
+    {
+        insertAtTail(tail, val);
+    }
+    else if (pos >= size(head))
+    {
+        cout << "Invalid Index";
+    }
+    else
+    {
+        insertAtPos(head, pos, val);
+    }
     printNormal(head);
     print_reverse(tail);
+
     return 0;
 }
