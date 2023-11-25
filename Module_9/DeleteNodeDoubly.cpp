@@ -172,7 +172,7 @@ int main()
         {
             printNormal(head);
         }
-        else if (op = 4)
+        else if (op == 4)
         {
             printReverse(tail);
         }
