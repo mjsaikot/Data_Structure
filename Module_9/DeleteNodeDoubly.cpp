@@ -143,10 +143,6 @@ int main()
         {
             cout << "Enter value: ";
             cin >> val;
-            if (val = -1)
-            {
-                break;
-            }
             insertLinkedList(head, tail, val);
         }
         else if (op == 2)
@@ -174,7 +170,6 @@ int main()
         }
         else if (op == 3)
         {
-
             printNormal(head);
         }
         else if (op = 4)
@@ -183,12 +178,6 @@ int main()
         }
         else if (op == 5)
         {
-            cout << "Option 1: Delete Head";
-            cout << "Option 2: Delete any Position";
-            cout << "Option 3: Delete tail";
-            cout << endl;
-            cout << "Enter delete position: ";
-            cin >> op;
             cout << "Enter position: ";
             cin >> pos;
             if (pos == 0)
@@ -201,7 +190,7 @@ int main()
             }
             else if (pos >= size(head))
             {
-                cout << "Invalid Position";
+                cout << "Invalid Position" << endl;
             }
             else
             {
