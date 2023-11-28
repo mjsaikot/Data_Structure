@@ -69,6 +69,11 @@ void insertAtTail(Node *&head, Node *&tail, int val)
 void deleteHead(Node *&head)
 {
     Node *deleteHead = head;
+    if (head == NULL)
+    {
+        cout << "No Data for delete" << endl;
+        return;
+    }
     head = head->next;
     delete deleteHead;
     head->prev = NULL;
@@ -76,6 +81,11 @@ void deleteHead(Node *&head)
 void deleteAnyPos(Node *head, int pos)
 {
     Node *tmp = head;
+    if (head == NULL)
+    {
+        cout << "No data for delete" << endl;
+        return;
+    }
     for (int i = 1; i <= pos - 1; i++)
     {
         tmp = tmp->next;
