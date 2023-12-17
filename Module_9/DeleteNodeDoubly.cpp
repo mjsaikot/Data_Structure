@@ -18,7 +18,7 @@ public:
 void insertAtHead(Node *&head, Node *&tail, int val)
 {
     Node *newNode = new Node(val);
-    if (head == NULL)
+    if (head == nullptr)
     {
         head = newNode;
         tail = newNode;
@@ -28,35 +28,10 @@ void insertAtHead(Node *&head, Node *&tail, int val)
     head->prev = newNode;
     head = newNode;
 }
-void insertLinkedList(Node *&head, Node *&tail, int val)
-{
-    Node *newNode = new Node(val);
-    if (head == NULL)
-    {
-        insertAtHead(head, tail, val);
-        return;
-    }
-    tail->next = newNode;
-    newNode->prev = tail;
-    tail = newNode;
-}
-void insertAtPos(Node *head, int pos, int val)
-{
-    Node *newNode = new Node(val);
-    Node *tmp = head;
-    for (int i = 1; i <= pos - 1; i++)
-    {
-        tmp = tmp->next;
-    }
-    newNode->next = tmp->next;
-    tmp->next = newNode;
-    newNode->next->prev = newNode;
-    newNode->prev = tmp;
-}
 void insertAtTail(Node *&head, Node *&tail, int val)
 {
     Node *newNode = new Node(val);
-    if (tail == NULL)
+    if (head == nullptr)
     {
         head = newNode;
         tail = newNode;
@@ -64,48 +39,77 @@ void insertAtTail(Node *&head, Node *&tail, int val)
     }
     tail->next = newNode;
     newNode->prev = tail;
-    tail = tail->next;
+    tail = newNode;
 }
-void deleteHead(Node *&head)
+void insertAtPos(Node *&head, Node *&tail, int pos, int val)
 {
-    Node *deleteHead = head;
-    if (head == NULL)
+    if (pos == 0)
     {
-        cout << "No Data for delete" << endl;
+        insertAtHead(head, tail, val);
         return;
     }
-    head = head->next;
-    delete deleteHead;
-    head->prev = NULL;
-}
-void deleteAnyPos(Node *head, int pos)
-{
+    Node *newNode = new Node(val);
     Node *tmp = head;
-    if (head == NULL)
-    {
-        cout << "No data for delete" << endl;
-        return;
-    }
     for (int i = 1; i <= pos - 1; i++)
     {
         tmp = tmp->next;
     }
-    Node *deleteNode = tmp;
-    tmp->next = tmp->next->next;
-    tmp->next->prev = tmp;
-    delete deleteNode;
+    if (tmp == nullptr)
+    {
+        cout << "Invalid Position" << endl;
+        return;
+    }
+    newNode->next = tmp->next;
+    newNode->prev = tmp;
+    if (tmp->next != nullptr)
+    {
+        tmp->next->prev = newNode;
+    }
+    tmp->next = newNode;
+    if (newNode->next == nullptr)
+    {
+        tail = newNode;
+    }
 }
-void deleteTail(Node *&tail)
+void deleteNode(Node *&head, Node *&tail, int pos)
 {
-    Node *deleteTail = tail;
-    tail = tail->prev;
-    delete deleteTail;
-    tail->next = NULL;
+    if (head == nullptr || pos < 0)
+    {
+        cout << "Invalid position or empty list" << endl;
+        return;
+    }
+    Node *tmp = head;
+    for (int i = 0; tmp != nullptr && i < pos; i++)
+    {
+        tmp = tmp->next;
+    }
+    if (tmp == nullptr)
+    {
+        cout << "Invalid position" << endl;
+        return;
+    }
+    if (tmp == head)
+    {
+        head = tmp->next;
+    }
+    if (tmp == tail)
+    {
+        tail = tmp->prev;
+    }
+    if (tmp->prev != nullptr)
+    {
+        tmp->prev->next = tmp->next;
+    }
+    if (tmp->next != NULL)
+    {
+        tmp->next->prev = tmp->prev;
+    }
+    delete tmp;
 }
 void printNormal(Node *head)
 {
     Node *tmp = head;
-    while (tmp != NULL)
+    while (tmp != nullptr)
     {
         cout << tmp->val << " ";
         tmp = tmp->next;
@@ -115,7 +119,7 @@ void printNormal(Node *head)
 void printReverse(Node *tail)
 {
     Node *tmp = tail;
-    while (tmp != NULL)
+    while (tmp != nullptr)
     {
         cout << tmp->val << " ";
         tmp = tmp->prev;
@@ -135,11 +139,12 @@ int size(Node *head)
 }
 int main()
 {
-    Node *head = NULL;
-    Node *tail = NULL;
-    int val, pos, op;
+    Node *head = nullptr;
+    Node *tail = nullptr;
+    int op, pos, val;
     while (true)
     {
+        cout << "Menu: " << endl;
         cout << "Option 1: Insert Linked List" << endl;
         cout << "Option 2: Insert at any position." << endl;
         cout << "Option 3: Print the linked list." << endl;
@@ -153,7 +158,7 @@ int main()
         {
             cout << "Enter value: ";
             cin >> val;
-            insertLinkedList(head, tail, val);
+            insertAtTail(head, tail, val);
         }
         else if (op == 2)
         {
@@ -175,7 +180,7 @@ int main()
             }
             else
             {
-                insertAtPos(head, pos, val);
+                insertAtPos(head, tail, pos, val);
             }
         }
         else if (op == 3)
@@ -190,21 +195,13 @@ int main()
         {
             cout << "Enter position: ";
             cin >> pos;
-            if (pos == 0)
-            {
-                deleteHead(head);
-            }
-            else if (pos == size(head))
-            {
-                deleteTail(tail);
-            }
-            else if (pos >= size(head))
+            if (pos >= size(head))
             {
                 cout << "Invalid Position" << endl;
             }
             else
             {
-                deleteAnyPos(head, pos);
+                deleteNode(head, tail, pos);
             }
         }
         else if (op == 6)
