@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 using namespace std;
+
 class Node
 {
 public:
@@ -15,6 +16,7 @@ public:
         this->prev = NULL;
     }
 };
+
 void insertAtHead(Node *&head, Node *&tail, int val)
 {
     Node *newNode = new Node(val);
@@ -31,6 +33,7 @@ void insertAtHead(Node *&head, Node *&tail, int val)
         head = newNode;
     }
 }
+
 void insertAtTail(Node *&head, Node *&tail, int val)
 {
     Node *newNode = new Node(val);
@@ -40,23 +43,47 @@ void insertAtTail(Node *&head, Node *&tail, int val)
         tail = newNode;
         return;
     }
-    newNode->prev = tail;
-    tail->next = newNode;
-    tail = newNode;
+    else
+    {
+        newNode->prev = tail;
+        tail->next = newNode;
+        tail = newNode;
+    }
 }
-void insertAtPos(Node *head, int pos, int val)
+
+void insertAtPos(Node *&head, Node *&tail, int pos, int val)
 {
     Node *newNode = new Node(val);
     Node *tmp = head;
-    for (int i = 1; i <= pos - 1; i++)
+    int sz = 0;
+    while (tmp != nullptr && sz < pos - 1)
     {
         tmp = tmp->next;
+        sz++;
     }
+
+    if (tmp == nullptr)
+    {
+        // Invalid position
+        cout << "Invalid" << endl;
+        delete newNode;
+        return;
+    }
+
     newNode->next = tmp->next;
     tmp->next = newNode;
-    newNode->next->prev = newNode;
+    if (newNode->next != nullptr)
+    {
+        newNode->next->prev = newNode;
+    }
+    else
+    {
+        // If inserting at the end, update the tail
+        tail = newNode;
+    }
     newNode->prev = tmp;
 }
+
 void printNormal(Node *head)
 {
     Node *tmp = head;
@@ -67,6 +94,7 @@ void printNormal(Node *head)
     }
     cout << endl;
 }
+
 void print_reverse(Node *tail)
 {
     Node *tmp = tail;
@@ -77,6 +105,7 @@ void print_reverse(Node *tail)
     }
     cout << endl;
 }
+
 int size(Node *head)
 {
     Node *tmp = head;
@@ -84,9 +113,11 @@ int size(Node *head)
     while (tmp != NULL)
     {
         cnt++;
+        tmp = tmp->next;
     }
     return cnt;
 }
+
 int main()
 {
     Node *head = nullptr;
@@ -104,13 +135,9 @@ int main()
         {
             insertAtTail(head, tail, val);
         }
-        else if (pos >= size(head))
-        {
-            cout << "Invalid" << endl;
-        }
         else
         {
-            insertAtPos(head, val, pos);
+            insertAtPos(head, tail, pos, val);
         }
         printNormal(head);
         print_reverse(tail);
