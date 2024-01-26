@@ -20,8 +20,10 @@ class myStackList
 public:
     Node *head = NULL;
     Node *tail = NULL;
+    int sz = 0;
     void push(int val)
     {
+        sz++;
         Node *newNode = new Node(val);
         if (head == nullptr)
         {
@@ -35,6 +37,7 @@ public:
     }
     void pop()
     {
+        sz--;
         Node *deleteNode = tail;
         tail = tail->prev;
         if (tail == nullptr)
@@ -43,15 +46,15 @@ public:
     }
     int top()
     {
-        return myList.back();
+        return tail->val;
     }
     int size()
     {
-        return myList.size();
+        return sz;
     }
     bool empty()
     {
-        if (myList.size() == 0)
+        if (sz == 0)
             return true;
         else
             return false;
@@ -59,5 +62,19 @@ public:
 };
 int main()
 {
+    myStackList st;
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; i++)
+    {
+        int x;
+        cin >> x;
+        st.push(x);
+    }
+    while (!st.empty())
+    {
+        cout << st.top() << " ";
+        st.pop();
+    }
     return 0;
 }
