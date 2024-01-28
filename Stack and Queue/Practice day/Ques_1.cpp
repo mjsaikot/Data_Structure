@@ -49,7 +49,7 @@ public:
     {
         if (sz == 0)
         {
-            std::cout << "Stack Underflow\n";
+            cout << "Stack Underflow\n";
             return;
         }
         sz--;
@@ -70,7 +70,7 @@ public:
     {
         if (sz == 0)
         {
-            std::cout << "Stack is empty\n";
+            cout << "Stack is empty\n";
             return -1; // Return some invalid value indicating error
         }
         return tail->val;
@@ -91,7 +91,7 @@ int main()
 {
     MyStack st, st1;
     int n;
-    std::cin >> n;
+    cin >> n;
     for (int i = 0; i < n; i++)
     {
         int x;
