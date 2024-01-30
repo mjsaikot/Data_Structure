@@ -104,7 +104,7 @@ int main()
     for (int i = 0; i < m; i++)
     {
         int x;
-        std::cin >> x;
+        cin >> x;
         st1.push(x);
     }
 
