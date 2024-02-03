@@ -1,4 +1,6 @@
 #include <bits/stdc++.h>
+using namespace std;
+// Coding Ninja;
 stack<int> pushAtBottom(stack<int> &myStack, int x)
 {
     // Write your code here.
