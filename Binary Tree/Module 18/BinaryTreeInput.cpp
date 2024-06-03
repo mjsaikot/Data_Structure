@@ -21,7 +21,7 @@ Node *inputBinary()
     int val;
     cin >> val;
     Node *root;
-    if (val = -1)
+    if (val == -1)
         root = NULL;
     else
         root = new Node(val);
