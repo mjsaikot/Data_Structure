@@ -15,16 +15,20 @@ public:
         this->right = NULL;
     }
 };
-void PreOrder(Node *root)
+void LevelOrder(Node *root)
 {
-    // base case
-    if (root == NULL)
+    queue<Node *> q;
+    q.push(root);
+    while (!q.empty())
     {
-        return;
+        Node *f = q.front();
+        q.pop();
+        cout << f->val << " " << endl;
+        if (f->left)
+            q.push(f->left);
+        if (f->right)
+            q.push(f->right);
     }
-    cout << root->val << " " << endl;
-    PreOrder(root->left);
-    PreOrder(root->right);
 }
 int main()
 {
@@ -50,7 +54,7 @@ int main()
     d->right = g;
     h->right = i;
 
-    PreOrder(root);
+    LevelOrder(root);
 
     return 0;
 }

@@ -15,16 +15,16 @@ public:
         this->right = NULL;
     }
 };
-void PreOrder(Node *root)
+void InOrder(Node *root)
 {
     // base case
     if (root == NULL)
     {
         return;
     }
+    InOrder(root->left);
     cout << root->val << " " << endl;
-    PreOrder(root->left);
-    PreOrder(root->right);
+    InOrder(root->right);
 }
 int main()
 {
@@ -50,7 +50,7 @@ int main()
     d->right = g;
     h->right = i;
 
-    PreOrder(root);
+    InOrder(root);
 
     return 0;
 }
